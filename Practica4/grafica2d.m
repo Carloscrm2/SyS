@@ -25,9 +25,9 @@ xlabel('t');
 title(tit);
 
 % Uncomment the following line to preserve the X-limits of the axes
- xlim(axes1,[-6 8]);
+ xlim(axes1,[-5 5]);
 % Uncomment the following line to preserve the Y-limits of the axes
- ylim(axes1,[-2 2]);
+ ylim(axes1,[-4 4]);
 box(axes1,'on');
 % Set the remaining axes properties
 set(axes1,'XAxisLocation','origin','XGrid','on','YAxisLocation','origin',...

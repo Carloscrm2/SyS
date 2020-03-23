@@ -1,16 +1,17 @@
   function convconm(x,h,c)
-  figure (1) % Se crea una figura para hacer las gráficas
+  z = figure (1); % Se crea una figura para hacer las gráficas
+  axis tight manual % this ensures that getframe() returns a consistent size
+  filename = 'conv.gif';
   dtau = 0.005; % Base de los rectangulos para realizar la integral 
-  tau = -1:dtau:8; % Intervalo de visualización del resultado
+  tau = -5:dtau:8; % Intervalo de visualización del resultado
   ti = 0; % Indice para el vector de resultados
-  tvec = -.25:.1:5.75; % traslaciones de t, cuantas integrales se calulan  
+  tvec = -5.25:.1:5.75; % traslaciones de t, cuantas integrales se calulan  
   y = NaN*zeros(1, length (tvec)); % Resultados de acuerdo a cuantos t
   for t = tvec % Cantidad de traslaciones
       ti = ti+1; % Indice para guardar el resultado (indice del tiempo)
       xh = x(t-tau).*h(tau); % resultado de la multiplicación 
       lxh = length(xh); % longitud del resultado
       y(ti) = sum(xh.*dtau); % Base por altura, aproximación de la integral
-      plot(tau,x(tau));
       subplot (2,1,1), % gráfica de 2 x 1 (primera)
       plot(tau, h(tau), 'r-', tau, x(t-tau), 'g--', t, 0, 'ob'); %graficas 
       axis ([tau(1) tau(end) -2.0 2.5]); % límites de los ejes
@@ -23,9 +24,20 @@
       plot (tvec, y, 'k', tvec (ti), y(ti), 'ok',tau,c(tau));
       xlabel ('t'); 
       ylabel ('y(t) = \int h(\tau)x(t-\tau) d\tau');
-      axis ([tau(1) tau(end) -1.0 2.0]); % límites del eje
+      axis ([tau(1) tau(end) -2.0 5.0]); % límites del eje
       grid; % malla
-      drawnow; % efecto de movimiento continuo
+      drawnow % efecto de movimiento continuo
+      
+     % Capture the plot as an image 
+     frame = getframe(z); 
+     im = frame2im(frame); 
+     [imind,cm] = rgb2ind(im,256); 
+     % Write to the GIF File 
+     if t == -5.25
+        imwrite(imind,cm,filename,'gif', 'Loopcount',inf); 
+     else 
+        imwrite(imind,cm,filename,'gif','WriteMode','append'); 
+     end 
       
   end
   end

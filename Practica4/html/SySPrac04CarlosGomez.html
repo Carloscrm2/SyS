@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Pr&aacute;ctica 4: Convoluci&oacute;n y Correlaci&oacute;n</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-03-22"><meta name="DC.source" content="Practica4.m"><style type="text/css">
+      --><title>Pr&aacute;ctica 4: Convoluci&oacute;n y Correlaci&oacute;n</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-03-23"><meta name="DC.source" content="Practica4.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,30 +67,32 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Pr&aacute;ctica 4: Convoluci&oacute;n y Correlaci&oacute;n</h1><!--introduction--><p>integrantes: G&oacute;mez Garc&iacute;a Carlos Eduardo Contreras Porfirio Alejandro G&oacute;mez Serrano Eric</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Objetivos</a></li><li><a href="#2">Introducci&oacute;n</a></li><li><a href="#3">PR04 problema 1</a></li><li><a href="#4">PR04 problema 3</a></li><li><a href="#5">PR06 problema e)</a></li><li><a href="#6">PR06 problema f)</a></li></ul></div><h2 id="1">Objetivos</h2><div><ul><li>Conocer m&eacute;todos b&aacute;sicos de integraci&oacute;n num&eacute;rica</li><li>Manipulaci&oacute;n de instrucciones en MATLAB</li><li>Simular convoluciones y correlaciones de se&ntilde;ales continuas</li></ul></div><h2 id="2">Introducci&oacute;n</h2><p>Teorema fundamental del c&aacute;lculo</p><h2 id="3">PR04 problema 1</h2><pre class="codeinput">t = -10:0.001:10;
+  </style></head><body><div class="content"><h1>Pr&aacute;ctica 4: Convoluci&oacute;n y Correlaci&oacute;n</h1><!--introduction--><p>integrantes: G&oacute;mez Garc&iacute;a Carlos Eduardo Contreras Porfirio Alejandro G&oacute;mez Serrano Eric</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Objetivos</a></li><li><a href="#2">Introducci&oacute;n</a></li><li><a href="#3">PR04 problema 1</a></li><li><a href="#6">PR04 problema 3</a></li><li><a href="#9">PR06 problema e)</a></li><li><a href="#12">PR06 problema f)</a></li></ul></div><h2 id="1">Objetivos</h2><div><ul><li>Conocer m&eacute;todos b&aacute;sicos de integraci&oacute;n num&eacute;rica</li><li>Manipulaci&oacute;n de instrucciones en MATLAB</li><li>Simular convoluciones y correlaciones de se&ntilde;ales continuas</li></ul></div><h2 id="2">Introducci&oacute;n</h2><p>Teorema fundamental del c&aacute;lculo</p><p><img src="Practica4_eq15682195134482745114.png" alt="$x^2+e^{\pi i}$"></p><h2 id="3">PR04 problema 1</h2><pre class="codeinput">t = -10:0.001:10;
 x = @(t) ((t&gt;=0).*(1-t).*(t&lt;=1)+(t&gt;1).*(t-1).*(t&lt;=2));
 h = @(t) heaviside(t)-heaviside(t-1);
 c = @(t) (t&gt;0).*(t-(t.^2)/2).*(t&lt;=1)+(t&gt;1).*(t.^2-3.*t+5/2).*(t&lt;=2)+(t&gt;2).*(-t.^2/2+2.*t-3/2).*(t&lt;=3);
-<span class="comment">%grafica2d(t,c(t),'c(t)');</span>
-<span class="comment">% convconm(x,h,c);</span>
-</pre><h2 id="4">PR04 problema 3</h2><pre class="codeinput">x = @(t) (t&lt;=0).*(0)+(t&gt;0).*(t).*(t&lt;=1)+(t&gt;1).*(1).*(t&lt;=2);
-h = @(t) (t&lt;=1).*(0)+(t&gt;1).*(1).*(t&lt;=3)+(t&gt;3).*(0);
-c = @(t) (t&gt;1).*((t.^2)/2-t+1/2).*(t&lt;=2)+(t&gt;2).*((2.*t+1)/2-2).*(t&lt;=3)+(t&gt;3).*((-t.^2+6.*t-8)/2+1).*(t&lt;=4)+(t&gt;4).*(-t+5).*(t&lt;=5);
-<span class="comment">% grafica2d(t,c(t),'c(t)')</span>
-<span class="comment">% grafica2d(t,h(t),'x(t)')</span>
-
-<span class="comment">% convconm(x,h,c);</span>
-</pre><h2 id="5">PR06 problema e)</h2><pre class="codeinput">x = @(t) heaviside(t)-2*heaviside(t-3)+heaviside(t-4);
-h = @(t) heaviside(t)-2*heaviside(t-3)+heaviside(t-4);
-c = @(t) (t&gt;3).*(-4+t).*(t&lt;4)+(t&gt;1).*(2-t).*(t&lt;3)+(t&gt;0).*(-3.*t+4).*(t&lt;1)+(t&gt;-1).*(3.*t+4).*(t&lt;0)+(t&gt;-3).*(t+2).*(t&lt;-1)+(t&gt;-4).*(-4-t).*(t&lt;-3);
-<span class="comment">% grafica2d(t,c(t),'c(t)')</span>
-convconm(x,h,c);
-</pre><img vspace="5" hspace="5" src="Practica4_01.png" alt=""> <h2 id="6">PR06 problema f)</h2><pre class="codeinput">h = @(t) heaviside(t)-2.*heaviside(t-2)+heaviside(t-4);
-x = @(t) heaviside(t)-2.*heaviside(t-3)+heaviside(t-4);
-<span class="comment">% la c no coincide con la simulacion</span>
-<span class="comment">%c = @(t) (t&gt;3).*(-4+t).*(t&lt;4)+(t&gt;1).*(2-t).*(t&lt;3)+(t&gt;0).*(-3.*t+4).*(t&lt;1)+(t&gt;-1).*(3.*t+4).*(t&lt;0)+(t&gt;-3).*(t+2).*(t&lt;-1)+(t&gt;-4).*(-4-t).*(t&lt;-3);</span>
-<span class="comment">%convconm(x,h,c);</span>
-</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+grafica2d(t,x(t),<span class="string">'x(t)'</span>);
+grafica2d(t,h(t),<span class="string">'h(t)'</span>);
+<span class="comment">% Graficas de las se&ntilde;ales involucradas en la convolucion</span>
+</pre><img vspace="5" hspace="5" src="Practica4_01.png" alt=""> <img vspace="5" hspace="5" src="Practica4_02.png" alt=""> <p>convconm(x,h,c); %llamada de la funci&oacute;n que realiza la convolucion</p><p>La grafica de color amarrillo es la gr&aacute;fica del resultado analitco y el punto movil es el resultado de la simulacion</p><p><img vspace="5" hspace="5" src="PR041.gif" alt=""> </p><h2 id="6">PR04 problema 3</h2><pre class="codeinput">x_1 = @(t) (t&lt;=0).*(0)+(t&gt;0).*(t).*(t&lt;=1)+(t&gt;1).*(1).*(t&lt;=2);
+h_1= @(t) (t&lt;=1).*(0)+(t&gt;1).*(1).*(t&lt;=3)+(t&gt;3).*(0);
+c_1= @(t) (t&gt;1).*((t.^2)/2-t+1/2).*(t&lt;=2)+(t&gt;2).*((2.*t+1)/2-2).*(t&lt;=3)+(t&gt;3).*((-t.^2+6.*t-8)/2+1).*(t&lt;=4)+(t&gt;4).*(-t+5).*(t&lt;=5);
+grafica2d(t,x_1(t),<span class="string">'x(t)'</span>);
+grafica2d(t,h_1(t),<span class="string">'h(t)'</span>);
+<span class="comment">% Graficas de las se&ntilde;ales involucradas en la convolucion</span>
+</pre><img vspace="5" hspace="5" src="Practica4_03.png" alt=""> <img vspace="5" hspace="5" src="Practica4_04.png" alt=""> <p>convconm(x_1,h_1,c_1); %llamada de la funci&oacute;n que realiza la convolucion</p><p>La grafica de color amarrillo es la gr&aacute;fica del resultado analitco y el punto movil es el resultado de la simulacion</p><p><img vspace="5" hspace="5" src="PR042.gif" alt=""> </p><h2 id="9">PR06 problema e)</h2><pre class="codeinput">h_2= @(t) heaviside(t)-2*heaviside(t-3)+heaviside(t-4);
+x_2= @(t) (-4&lt;t).*(-1).*(t&lt;=-3)+(-3&lt;t).*(1).*(t&lt;=0);
+c_2= @(t) (t&gt;3).*(-4+t).*(t&lt;4)+(t&gt;1).*(2-t).*(t&lt;3)+(t&gt;0).*(-3.*t+4).*(t&lt;1)+(t&gt;-1).*(3.*t+4).*(t&lt;0)+(t&gt;-3).*(t+2).*(t&lt;-1)+(t&gt;-4).*(-4-t).*(t&lt;-3);
+grafica2d(t,x_2(t),<span class="string">'x(t)'</span>);
+grafica2d(t,h_2(t),<span class="string">'x(-t)'</span>);
+<span class="comment">% Graficas de las se&ntilde;ales involucradas en la autocorrelacion</span>
+</pre><img vspace="5" hspace="5" src="Practica4_05.png" alt=""> <img vspace="5" hspace="5" src="Practica4_06.png" alt=""> <p>convconm(x_2,h_2,c_2); %llamada de la funci&oacute;n que realiza la convolucion</p><p>La grafica de color amarrillo es la gr&aacute;fica del resultado analitco y el punto movil es el resultado de la simulacion</p><p><img vspace="5" hspace="5" src="PR06e.gif" alt=""> </p><h2 id="12">PR06 problema f)</h2><pre class="codeinput">h_3 = @(t) heaviside(t)-2.*heaviside(t-2)+heaviside(t-4);
+x_3= @(t) (-4&lt;t).*(-1).*(t&lt;=-3)+(-3&lt;t).*(1).*(t&lt;=0);
+c_3= @(t) (-4&lt;t).*(-4-t).*(t&lt;=-3)+(-3&lt;t).*(2+t).*(t&lt;=-2)+(-2&lt;t).*(6+3.*t).*(t&lt;=-1)+(-1&lt;t).*(2-t).*(t&lt;=0)+(0&lt;t).*(-3.*t+2).*(t&lt;=1)+(1&lt;t).*(-t).*(t&lt;=2)+(2&lt;t).*(t-4).*(t&lt;=4);
+grafica2d(t,x_3(t),<span class="string">'x(t)'</span>);
+grafica2d(t,h_3(t),<span class="string">'h(t)'</span>);
+<span class="comment">% Graficas de las se&ntilde;ales involucradas en la convolucion</span>
+</pre><img vspace="5" hspace="5" src="Practica4_07.png" alt=""> <img vspace="5" hspace="5" src="Practica4_08.png" alt=""> <p>convconm(x_3,h_3,c_3); %llamada de la funci&oacute;n que realiza la convolucion</p><p>La grafica de color amarrillo es la gr&aacute;fica del resultado analitco y el punto movil es el resultado de la simulacion</p><p><img vspace="5" hspace="5" src="PR06f.gif" alt=""> </p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Práctica 4: Convolución y Correlación
 % integrantes:
@@ -104,35 +106,75 @@ x = @(t) heaviside(t)-2.*heaviside(t-3)+heaviside(t-4);
 %% Introducción
 % Teorema fundamental del cálculo
 %
+% $x^2+e^{\pi i}$ 
 %% PR04 problema 1
 t = -10:0.001:10;
 x = @(t) ((t>=0).*(1-t).*(t<=1)+(t>1).*(t-1).*(t<=2));
 h = @(t) heaviside(t)-heaviside(t-1);
 c = @(t) (t>0).*(t-(t.^2)/2).*(t<=1)+(t>1).*(t.^2-3.*t+5/2).*(t<=2)+(t>2).*(-t.^2/2+2.*t-3/2).*(t<=3);
-%grafica2d(t,c(t),'c(t)');
-% convconm(x,h,c);
+grafica2d(t,x(t),'x(t)');
+grafica2d(t,h(t),'h(t)');
+% Graficas de las señales involucradas en la convolucion 
+%%
+% 
+% convconm(x,h,c); %llamada de la función que realiza la convolucion
+%
+%%
+% 
+% La grafica de color amarrillo es la gráfica del resultado analitco y el punto movil es el resultado de la simulacion
+%
+% <<PR041.gif>>
+% 
 %% PR04 problema 3
-x = @(t) (t<=0).*(0)+(t>0).*(t).*(t<=1)+(t>1).*(1).*(t<=2);
-h = @(t) (t<=1).*(0)+(t>1).*(1).*(t<=3)+(t>3).*(0);
-c = @(t) (t>1).*((t.^2)/2-t+1/2).*(t<=2)+(t>2).*((2.*t+1)/2-2).*(t<=3)+(t>3).*((-t.^2+6.*t-8)/2+1).*(t<=4)+(t>4).*(-t+5).*(t<=5);
-% grafica2d(t,c(t),'c(t)')
-% grafica2d(t,h(t),'x(t)')
-
-% convconm(x,h,c);
-
+x_1 = @(t) (t<=0).*(0)+(t>0).*(t).*(t<=1)+(t>1).*(1).*(t<=2);
+h_1= @(t) (t<=1).*(0)+(t>1).*(1).*(t<=3)+(t>3).*(0);
+c_1= @(t) (t>1).*((t.^2)/2-t+1/2).*(t<=2)+(t>2).*((2.*t+1)/2-2).*(t<=3)+(t>3).*((-t.^2+6.*t-8)/2+1).*(t<=4)+(t>4).*(-t+5).*(t<=5);
+grafica2d(t,x_1(t),'x(t)');
+grafica2d(t,h_1(t),'h(t)');
+% Graficas de las señales involucradas en la convolucion
+%%
+% 
+% convconm(x_1,h_1,c_1); %llamada de la función que realiza la convolucion
+%
+%%
+% 
+% La grafica de color amarrillo es la gráfica del resultado analitco y el punto movil es el resultado de la simulacion
+%
+% <<PR042.gif>>
+% 
 %% PR06 problema e)
-x = @(t) heaviside(t)-2*heaviside(t-3)+heaviside(t-4);
-h = @(t) heaviside(t)-2*heaviside(t-3)+heaviside(t-4);
-c = @(t) (t>3).*(-4+t).*(t<4)+(t>1).*(2-t).*(t<3)+(t>0).*(-3.*t+4).*(t<1)+(t>-1).*(3.*t+4).*(t<0)+(t>-3).*(t+2).*(t<-1)+(t>-4).*(-4-t).*(t<-3);
-% grafica2d(t,c(t),'c(t)')
-convconm(x,h,c);
-
+h_2= @(t) heaviside(t)-2*heaviside(t-3)+heaviside(t-4);
+x_2= @(t) (-4<t).*(-1).*(t<=-3)+(-3<t).*(1).*(t<=0);
+c_2= @(t) (t>3).*(-4+t).*(t<4)+(t>1).*(2-t).*(t<3)+(t>0).*(-3.*t+4).*(t<1)+(t>-1).*(3.*t+4).*(t<0)+(t>-3).*(t+2).*(t<-1)+(t>-4).*(-4-t).*(t<-3);
+grafica2d(t,x_2(t),'x(t)');
+grafica2d(t,h_2(t),'x(-t)');
+% Graficas de las señales involucradas en la autocorrelacion
+%%
+% 
+% convconm(x_2,h_2,c_2); %llamada de la función que realiza la convolucion
+%
+%%
+% 
+% La grafica de color amarrillo es la gráfica del resultado analitco y el punto movil es el resultado de la simulacion
+%
+% <<PR06e.gif>>
+% 
 %% PR06 problema f)
-h = @(t) heaviside(t)-2.*heaviside(t-2)+heaviside(t-4);
-x = @(t) heaviside(t)-2.*heaviside(t-3)+heaviside(t-4);
-% la c no coincide con la simulacion
-%c = @(t) (t>3).*(-4+t).*(t<4)+(t>1).*(2-t).*(t<3)+(t>0).*(-3.*t+4).*(t<1)+(t>-1).*(3.*t+4).*(t<0)+(t>-3).*(t+2).*(t<-1)+(t>-4).*(-4-t).*(t<-3);
-%convconm(x,h,c);
-
+h_3 = @(t) heaviside(t)-2.*heaviside(t-2)+heaviside(t-4);
+x_3= @(t) (-4<t).*(-1).*(t<=-3)+(-3<t).*(1).*(t<=0);
+c_3= @(t) (-4<t).*(-4-t).*(t<=-3)+(-3<t).*(2+t).*(t<=-2)+(-2<t).*(6+3.*t).*(t<=-1)+(-1<t).*(2-t).*(t<=0)+(0<t).*(-3.*t+2).*(t<=1)+(1<t).*(-t).*(t<=2)+(2<t).*(t-4).*(t<=4);
+grafica2d(t,x_3(t),'x(t)');
+grafica2d(t,h_3(t),'h(t)');
+% Graficas de las señales involucradas en la convolucion
+%%
+% 
+% convconm(x_3,h_3,c_3); %llamada de la función que realiza la convolucion
+%
+%%
+% 
+% La grafica de color amarrillo es la gráfica del resultado analitco y el punto movil es el resultado de la simulacion
+%
+% <<PR06f.gif>>
+% 
 ##### SOURCE END #####
 --></body></html>
